@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
-@MapperScan("com.learn.freeim.dao")
+@MapperScan("com.learn.freeim.mapper")
 public class FreeImApplication {
 
     public static void main(String[] args) {
