@@ -1,10 +1,8 @@
 package com.learn.freeim.service;
 
-import com.learn.freeim.mapper.BaseMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import tk.mybatis.mapper.common.Mapper;
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
+
+import com.learn.freeim.mapper.BaseMapper;
 
 /**
  * 公共服务

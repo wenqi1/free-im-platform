@@ -1,16 +1,15 @@
 package com.learn.freeim.controller;
 
-import com.alibaba.druid.support.json.JSONUtils;
-import com.learn.freeim.entity.Result;
-import com.learn.freeim.exception.CommonException;
-import com.learn.freeim.exception.ErrorMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.learn.freeim.entity.Result;
+import com.learn.freeim.exception.CommonException;
+import com.learn.freeim.exception.ErrorMap;
 
 /**
  * 全球异常处理类

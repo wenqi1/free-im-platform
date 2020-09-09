@@ -2,8 +2,6 @@ package com.learn.freeim.entity;
 
 import com.learn.freeim.enums.ResultState;
 
-import java.util.HashMap;
-
 /**
  * 接口响应实体类
  */

@@ -6,7 +6,6 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.3.RELEASE</version>
-        <relativePath/>
     </parent>
     <groupId>com.learn</groupId>
     <artifactId>free-im</artifactId>
@@ -77,6 +76,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>javax.mail-api</artifactId>
+		</dependency>
+		        
     </dependencies>
 
     <profiles>

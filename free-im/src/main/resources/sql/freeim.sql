@@ -4,6 +4,7 @@ create table `sys_user`(
 	`sex` VARCHAR(1) NOT NULL,
 	`account` VARCHAR(11) NOT NULL,
 	`password` VARCHAR(64) NOT NULL,
+	`mail` VARCHAR(30) NOT NULL,
 	`city` VARCHAR(10),
 	`age` INT,
 	`nickname` VARCHAR(10),
