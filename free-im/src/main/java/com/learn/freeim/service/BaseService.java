@@ -7,9 +7,8 @@ import com.learn.freeim.mapper.BaseMapper;
 /**
  * 公共服务
  * @param <E>服务类实体类
- * @param <M>服务类映射类
  */
-public interface  BaseService<E,M extends BaseMapper<E>> {
+public interface  BaseService<E> {
 
     void insert(E e);
 

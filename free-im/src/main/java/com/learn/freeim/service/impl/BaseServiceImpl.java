@@ -3,13 +3,24 @@ package com.learn.freeim.service.impl;
 import com.learn.freeim.mapper.BaseMapper;
 import com.learn.freeim.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import tk.mybatis.mapper.common.Mapper;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.List;
 
-public class BaseServiceImpl<E, M extends BaseMapper<E>> implements BaseService<E, M> {
+public class BaseServiceImpl<E> implements BaseService<E> {
 
     @Autowired
-    private M baseMapper;
+    private Mapper<E> baseMapper;
+
+    private Class<E> clazz;
+
+    public BaseServiceImpl() {
+        Type type = this.getClass().getGenericSuperclass();
+        ParameterizedType pType = (ParameterizedType) type;
+        this.clazz = (Class<E>) pType.getActualTypeArguments()[0];
+    }
 
     @Override
     public void insert(E e) {

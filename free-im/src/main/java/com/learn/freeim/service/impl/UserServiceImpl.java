@@ -12,7 +12,7 @@ import com.learn.freeim.mapper.BaseMapper;
 import com.learn.freeim.service.IUserService;
 
 @Service
-public class UserServiceImpl extends BaseServiceImpl<SysUser, BaseMapper<SysUser>> implements IUserService{
+public class UserServiceImpl extends BaseServiceImpl<SysUser> implements IUserService{
 	
 	private static final int USERNAME_LENGTH = 8;
 	
