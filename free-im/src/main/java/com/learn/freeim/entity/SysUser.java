@@ -1,19 +1,25 @@
 package com.learn.freeim.entity;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 public class SysUser {
 	
     private Long userId;
 
+    @NotEmpty(message = "用户名不能为空")
     private String userName;
 
+    @NotEmpty(message = "性别不能为空")
     private String sex;
 
+    @NotEmpty(message = "账号不能为空")
     private String account;
 
+    @NotEmpty(message = "密码不能为空")
     private String password;
 
+    @NotEmpty(message = "邮箱不能为空")
     private String mail;
 
     private String city;

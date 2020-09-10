@@ -2,8 +2,6 @@ package com.learn.freeim.service;
 
 import java.util.List;
 
-import com.learn.freeim.mapper.BaseMapper;
-
 /**
  * 公共服务
  * @param <E>服务类实体类

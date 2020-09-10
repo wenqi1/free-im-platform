@@ -1,6 +1,5 @@
 package com.learn.freeim.service.impl;
 
-import com.learn.freeim.mapper.BaseMapper;
 import com.learn.freeim.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.common.Mapper;

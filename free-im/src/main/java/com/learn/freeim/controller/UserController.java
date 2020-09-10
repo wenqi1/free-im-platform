@@ -1,16 +1,19 @@
 package com.learn.freeim.controller;
 
-import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
+import com.learn.freeim.entity.vo.UserLogin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,10 +21,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.learn.freeim.entity.Result;
 import com.learn.freeim.entity.SysUser;
 import com.learn.freeim.entity.VerifyImageCode;
-import com.learn.freeim.entity.vo.UserLogin;
-import com.learn.freeim.entity.vo.UserVO;
-import com.learn.freeim.service.IUserService;
+import com.learn.freeim.service.UserService;
 import com.learn.freeim.util.VerifyCodeUtil;
+
+import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("user")
@@ -30,29 +34,18 @@ public class UserController {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
-    private IUserService userService;
+    private UserService userService;
     
     @RequestMapping("register")
-    @ResponseBody
-    public Result<String> register(UserVO userVo) {
-    	String checkResult = userService.checkRegister(userVo);
-    	if(checkResult != null && !checkResult.isEmpty()){
-    		return Result.fail("100", checkResult);
-    	}
-    	List<SysUser> allUser = userService.selectAll();
-    	if(allUser != null){
-    		for(SysUser user : allUser){
-    			if(user.getUserName().equals(userVo.getUsername())){
-    				return Result.fail("100", "用户名已经存在");
-    			}
-    		}
-    	}
-    	SysUser registerUser = userService.convertUser(userVo);
-    	userService.insert(registerUser);
-    	return Result.success("注册成功");
+    public Result<String> register(@Validated SysUser sysUser) {
+		Date now = new Date();
+    	sysUser.setCreateDate(now);
+    	sysUser.setUpdateDate(now);
+    	userService.insert(sysUser);
+    	return Result.success();
     }
     
-    @RequestMapping("login")
+    /*@RequestMapping("login")
     @ResponseBody
     public Result<String> login(UserLogin user, HttpServletRequest request) {
     	String checkResult = userService.checkLogin(user);
@@ -75,7 +68,7 @@ public class UserController {
     		}
     	}
     	return Result.fail("100", "用户名或密码错误");
-    }
+    }*/
     
     
     

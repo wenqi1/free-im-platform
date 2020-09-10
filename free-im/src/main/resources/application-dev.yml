@@ -13,10 +13,10 @@ spring:
     name: free-im
   datasource:
     druid:
-      url: jdbc:mysql://192.168.190.128:3306/free_im_db?useUnicode=true&character_set_server=utf8mb4&useSSL=false&allowPublicKeyRetrieval=true
+      url: jdbc:mysql://47.104.252.148:3306/free_im_db?useUnicode=true&character_set_server=utf8mb4&useSSL=false&allowPublicKeyRetrieval=true
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
-      password: 123456
+      password: freeim
       initial-size: 5
       min-idle: 5
       max-active: 20

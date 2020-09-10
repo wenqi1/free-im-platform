@@ -15,6 +15,11 @@ public class Result<T> {
     // 接口请求返回数据
     private T data;
 
+    public Result(Integer code) {
+        super();
+        this.code = code;
+    }
+
     public Result(Integer code, T data) {
         super();
         this.code = code;
@@ -39,8 +44,16 @@ public class Result<T> {
         return new Result<T>(ResultState.SUCCESS.getCode(), data);
     }
 
+    public static <T> Result<T> success() {
+        return new Result<T>(ResultState.SUCCESS.getCode());
+    }
+
     public static <T> Result<T> fail(String errorCode, String msg) {
         return new Result<T>(ResultState.FAIL.getCode(), errorCode, msg);
+    }
+
+    public static <T> Result<T> fail(String errorCode, String msg, T data) {
+        return new Result<T>(ResultState.FAIL.getCode(), errorCode, msg, data);
     }
 
     public Integer getCode() {
