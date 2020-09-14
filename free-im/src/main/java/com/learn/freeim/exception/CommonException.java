@@ -13,6 +13,11 @@ public class CommonException extends RuntimeException {
         this.code = code;
         this.logger = logger;
     }
+    
+    public CommonException(String code, Logger logger) {
+        this.code = code;
+        this.logger = logger;
+    }
 
     public String getCode() {
         return code;

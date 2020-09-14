@@ -1,14 +1,11 @@
 package com.learn.freeim.exception;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.web.servlet.resource.EncodedResourceResolver;
-
-import java.io.*;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 错误集合

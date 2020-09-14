@@ -1,7 +1,9 @@
 package com.learn.freeim.util;
 
-import com.learn.freeim.config.SnowflakeConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.learn.freeim.config.SnowflakeConfig;
 
 /**
  * SnowFlake的结构如下(每部分用-分开):
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * 12位序列，毫秒内的计数，12位的计数顺序号支持每个节点每毫秒(同一机器，同一时间戳)产生4096个ID序号
  * SnowFlake的优点是，整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞(由数据中心ID和机器ID作区分)，并且效率较高，经测试，SnowFlake每秒能够产生26万ID左右。
  */
+@Component
 public class SnowflakeIdGenerator{
     // 开始时间截 (2015-01-01)
     private static final long twepoch = 1420041600000L;
@@ -57,9 +60,7 @@ public class SnowflakeIdGenerator{
     private static long lastTimestamp = -1L;
 
     @Autowired
-    private SnowflakeConfig snowflakeConfig;
-
-    public SnowflakeIdGenerator() {
+    public SnowflakeIdGenerator(SnowflakeConfig snowflakeConfig) {
         workerId = snowflakeConfig.getWorkId();
         datacenterId = snowflakeConfig.getDatacenterId();
     }
@@ -67,7 +68,7 @@ public class SnowflakeIdGenerator{
     /**
      * 获得下一个ID
      */
-    public static synchronized long nextId() {
+    public synchronized long nextId() {
         long timestamp = timeGen();
 
         //如果当前时间小于上一次ID生成的时间戳，说明系统时钟回退过这个时候应当抛出异常
@@ -103,7 +104,7 @@ public class SnowflakeIdGenerator{
      * @param lastTimestamp 上次生成ID的时间截
      * @return 当前时间戳
      */
-    protected static long tilNextMillis(long lastTimestamp) {
+    protected long tilNextMillis(long lastTimestamp) {
         long timestamp = timeGen();
         while (timestamp <= lastTimestamp) {
             timestamp = timeGen();
@@ -114,7 +115,7 @@ public class SnowflakeIdGenerator{
     /**
      * 返回以毫秒为单位的当前时间
      */
-    protected static long timeGen() {
+    protected long timeGen() {
         return System.currentTimeMillis();
     }
 }
