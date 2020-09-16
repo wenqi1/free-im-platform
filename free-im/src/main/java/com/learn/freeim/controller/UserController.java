@@ -1,6 +1,5 @@
 package com.learn.freeim.controller;
 
-
 import java.util.Date;
 
 import javax.imageio.ImageIO;
@@ -27,48 +26,46 @@ import com.learn.freeim.util.VerifyCodeUtil;
 @RestController
 @RequestMapping("user")
 public class UserController {
-	
-    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
-    @Autowired
-    private UserService userService;
-    
-    @Autowired
-    private SnowflakeIdGenerator idGenerator;
-    
-    @RequestMapping("register")
-    public Result<String> register(@Validated SysUser sysUser) {
-    	userService.usernameHasExist(sysUser);
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
+	@Autowired
+	private UserService userService;
+
+	@Autowired
+	private SnowflakeIdGenerator idGenerator;
+
+	@RequestMapping("register")
+	public Result<String> register(@Validated SysUser sysUser) {
+		userService.usernameHasExist(sysUser);
 		Date now = new Date();
-    	sysUser.setCreateDate(now);
-    	sysUser.setUpdateDate(now);
-    	sysUser.setUserId(idGenerator.nextId());
-    	userService.insert(sysUser);
-    	return Result.success();
-    }
-    
-    @RequestMapping("login")
-    public Result<String> login(SysUser user, HttpServletRequest request) {
-    	HttpSession session = request.getSession();
-    	String verifyCode = (String) session.getAttribute("verifyCode");
-    	session.removeAttribute("verifyCode");
-    	if(verifyCode == null || !verifyCode.equals(user.getVerifyCode())){
-    		throw new CommonException("1004", LOGGER);
-    	}
-    	SysUser sourceUser = userService.queryUserByUsername(user);
-    	if(sourceUser == null){
-    		throw new CommonException("1005", LOGGER);
-    	}
-		if(sourceUser.getUserName().equals(user.getUserName())
-				&& sourceUser.getPassword().equals(user.getPassword())){
+		sysUser.setCreateDate(now);
+		sysUser.setUpdateDate(now);
+		sysUser.setUserId(idGenerator.nextId());
+		userService.insert(sysUser);
+		return Result.success();
+	}
+
+	@RequestMapping("login")
+	public Result<String> login(SysUser user, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String verifyCode = (String) session.getAttribute("verifyCode");
+		session.removeAttribute("verifyCode");
+		if (verifyCode == null || !verifyCode.equals(user.getVerifyCode())) {
+			throw new CommonException("1004", LOGGER);
+		}
+		SysUser sourceUser = userService.queryUserByUsername(user);
+		if (sourceUser == null) {
+			throw new CommonException("1005", LOGGER);
+		}
+		if (sourceUser.getUserName().equals(user.getUserName())
+				&& sourceUser.getPassword().equals(user.getPassword())) {
 			return Result.success();
 		}
 		throw new CommonException("1006", LOGGER);
-    }
-    
-    
-    
-    /*
+	}
+
+	/*
 	 * 获取验证码
 	 */
 	@RequestMapping(value = "/verifyCode")
@@ -103,6 +100,5 @@ public class UserController {
 		}
 
 	}
-    
-    
+
 }
