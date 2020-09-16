@@ -59,7 +59,7 @@ public class UserController {
 			throw new CommonException("1005", LOGGER);
 		}
 		if (sourceUser.getUserName().equals(user.getUserName())
-				&& sourceUser.getPassword().equals(user.getPassword())) {
+		        && sourceUser.getPassword().equals(user.getPassword())) {
 			return Result.success();
 		}
 		throw new CommonException("1006", LOGGER);
