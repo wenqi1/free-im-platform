@@ -17,37 +17,50 @@ import tk.mybatis.mapper.entity.Example.Criteria;
 
 @Service
 public class UserServiceImpl extends BaseServiceImpl<SysUser> implements UserService {
-	
-	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
-	
-	@Autowired
-	private UserMapper userMapper;
-	
-	public void usernameHasExist(SysUser user){
-		Example example = new Example(SysUser.class);
-		Criteria criteria = example.createCriteria();
-		criteria.andEqualTo("userName", user.getUserName());
-		List<SysUser> users = null;
-		try{
-			users = userMapper.selectByExample(example);
-		}catch(Exception e){
-			throw new CommonException("1003", e, LOGGER);
-		}
-		if(users != null && !users.isEmpty()){
-			throw new CommonException("1002", LOGGER);
-		}
-	}
-	
-	public SysUser queryUserByUsername(SysUser user){
-		Example example = new Example(SysUser.class);
-		Criteria criteria = example.createCriteria();
-		criteria.andEqualTo("userName", user.getUserName());
-		SysUser result = null;
-		try{
-			result = userMapper.selectOneByExample(example);
-		}catch(Exception e){
-			throw new CommonException("1003", e, LOGGER);
-		}
-		return result;
-	}
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+
+    @Autowired
+    private UserMapper userMapper;
+
+    public void usernameHasExist(SysUser user) {
+        Example example = new Example(SysUser.class);
+        Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userName", user.getUserName());
+        List<SysUser> users = null;
+        try {
+            users = userMapper.selectByExample(example);
+        } catch (Exception e) {
+            throw new CommonException("1003", e, LOGGER);
+        }
+        if (users != null && !users.isEmpty()) {
+            throw new CommonException("1002", LOGGER);
+        }
+    }
+
+    public SysUser queryUserByUsername(SysUser user) {
+        Example example = new Example(SysUser.class);
+        Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userName", user.getUserName());
+        SysUser result = null;
+        try {
+            result = userMapper.selectOneByExample(example);
+        } catch (Exception e) {
+            throw new CommonException("1003", e, LOGGER);
+        }
+        return result;
+    }
+
+    public SysUser queryUserByUserId(Long userId) {
+        Example example = new Example(SysUser.class);
+        Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("userId", userId);
+        SysUser result = null;
+        try {
+            result = userMapper.selectOneByExample(example);
+        } catch (Exception e) {
+            throw new CommonException("1003", e, LOGGER);
+        }
+        return result;
+    }
 }

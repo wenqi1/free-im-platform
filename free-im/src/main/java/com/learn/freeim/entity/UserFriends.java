@@ -2,17 +2,17 @@ package com.learn.freeim.entity;
 
 import java.util.Date;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class UserFriends {
     
-    @NotEmpty(message = "用户不能为空")
+    @NotNull(message = "用户不能为空")
     private Long userId;
 
-    @NotEmpty(message = "好友不能为空")
+    @NotNull(message = "好友不能为空")
     private Long friendUserId;
 
-    @NotEmpty(message = "分组不能为空")
+    @NotNull(message = "分组不能为空")
     private Long groupId;
 
     private String remark;

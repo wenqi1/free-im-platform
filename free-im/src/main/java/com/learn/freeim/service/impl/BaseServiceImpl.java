@@ -1,12 +1,14 @@
 package com.learn.freeim.service.impl;
 
-import com.learn.freeim.service.BaseService;
-import org.springframework.beans.factory.annotation.Autowired;
-import tk.mybatis.mapper.common.Mapper;
-
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.learn.freeim.service.BaseService;
+
+import tk.mybatis.mapper.common.Mapper;
 
 public class BaseServiceImpl<E> implements BaseService<E> {
 

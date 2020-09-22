@@ -12,6 +12,9 @@ import com.learn.freeim.mapper.FriendsGroupManagerMapper;
 import com.learn.freeim.service.FriendsGroupManagerService;
 import com.learn.freeim.service.UserService;
 
+import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.entity.Example.Criteria;
+
 @Service
 public class FriendsGroupManagerServiceImpl extends BaseServiceImpl<FriendsGroupManager> implements FriendsGroupManagerService {
 	
@@ -54,4 +57,17 @@ public class FriendsGroupManagerServiceImpl extends BaseServiceImpl<FriendsGroup
         
     }
 	
+    @Override
+    public FriendsGroupManager queryGroupById(Long groupId){
+        Example example = new Example(FriendsGroupManager.class);
+        Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("groupId", groupId);
+        FriendsGroupManager result = null;
+        try{
+            result = groupMapper.selectOneByExample(example);
+        }catch(Exception e){
+            throw new CommonException("1003", e, LOGGER);
+        }
+        return result;
+    }
 }

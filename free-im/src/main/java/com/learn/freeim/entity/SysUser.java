@@ -31,11 +31,6 @@ public class SysUser {
     private Date createDate;
 
     private Date updateDate;
-    
-    
-    private String rePassword;
-    
-    private String verifyCode;
 
     public Long getUserId() {
         return userId;
@@ -124,30 +119,15 @@ public class SysUser {
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
     }
+
+    @Override
+    public String toString() {
+        return "SysUser [userId=" + userId + ", userName=" + userName + ", sex=" + sex + ", account=" + account
+                + ", password=" + password + ", mail=" + mail + ", city=" + city + ", age=" + age + ", nickname="
+                + nickname + ", createDate=" + createDate + ", updateDate=" + updateDate + "]";
+    }
+
     
-	public String getRePassword() {
-		return rePassword;
-	}
-
-	public void setRePassword(String rePassword) {
-		this.rePassword = rePassword;
-	}
-	
-	public String getVerifyCode() {
-		return verifyCode;
-	}
-
-	public void setVerifyCode(String verifyCode) {
-		this.verifyCode = verifyCode;
-	}
-
-	@Override
-	public String toString() {
-		return "SysUser [userId=" + userId + ", userName=" + userName + ", sex=" + sex + ", account=" + account
-				+ ", password=" + password + ", mail=" + mail + ", city=" + city + ", age=" + age + ", nickname="
-				+ nickname + ", createDate=" + createDate + ", updateDate=" + updateDate + ", rePassword=" + rePassword
-				+ ", verifyCode=" + verifyCode + "]";
-	}
 
 	
     

@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 
 import io.netty.channel.ChannelFuture;
 
-@Component
 public class FreeServerStart {
 
     public FreeServerStart() {
+        System.out.println("启动webSocket");
         FreeImServer server = new FreeImServer();
         ChannelFuture future = server.start(new InetSocketAddress(8088));
         Runtime.getRuntime().addShutdownHook(new Thread(){

@@ -37,8 +37,8 @@ public class FriendsController {
 
     @RequestMapping("addGroup")
     public Result<String> addGroup(@Validated FriendsGroupManager group) {
-        SysUser user = userService.selectById(group.getBelongUserId());
-        if(user == null){
+        SysUser user = userService.queryUserByUserId(group.getBelongUserId());
+        if (user == null) {
             throw new CommonException("1005", LOGGER);
         }
         Date now = new Date();
@@ -48,26 +48,26 @@ public class FriendsController {
         friendsGroupManagerService.insert(group);
         return Result.success();
     }
-    
+
     @RequestMapping("deleteGroup")
     public Result<String> deleteGroup(FriendsGroupManager group) {
         friendsGroupManagerService.deleteGroupRequestCheck(group);
         friendsGroupManagerService.deleteGroup(group);
         return Result.success();
     }
-    
+
     @RequestMapping("addFriend")
     public Result<String> addFriend(@Validated UserFriends friend) {
-        SysUser friendUser = userService.selectById(friend.getFriendUserId());
-        if(friendUser == null){
+        SysUser friendUser = userService.queryUserByUserId(friend.getFriendUserId());
+        if (friendUser == null) {
             throw new CommonException("1007", LOGGER);
         }
-        SysUser user = userService.selectById(friend.getUserId());
-        if(user == null){
+        SysUser user = userService.queryUserByUserId(friend.getUserId());
+        if (user == null) {
             throw new CommonException("1005", LOGGER);
         }
-        FriendsGroupManager group = friendsGroupManagerService.selectById(friend.getGroupId());
-        if(group == null){
+        FriendsGroupManager group = friendsGroupManagerService.queryGroupById(friend.getGroupId());
+        if (group == null) {
             throw new CommonException("1008", LOGGER);
         }
         Date now = new Date();

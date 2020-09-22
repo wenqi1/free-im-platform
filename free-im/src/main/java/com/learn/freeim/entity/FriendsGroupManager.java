@@ -3,12 +3,13 @@ package com.learn.freeim.entity;
 import java.util.Date;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class FriendsGroupManager {
     
     private Long groupId;
 
-    @NotEmpty(message = "用户不能为空")
+    @NotNull(message = "用户不能为空")
     private Long belongUserId;
 
     @NotEmpty(message = "组名不能为空")

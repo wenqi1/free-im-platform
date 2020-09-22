@@ -50,8 +50,9 @@ public class UserController {
     public Result<String> login(SysUser user, HttpServletRequest request) {
         HttpSession session = request.getSession();
         String verifyCode = (String) session.getAttribute("verifyCode");
+        String verifyCodePage = request.getParameter("verifyCode");
         session.removeAttribute("verifyCode");
-        if (verifyCode == null || !verifyCode.equals(user.getVerifyCode())) {
+        if (verifyCode == null || !verifyCode.equalsIgnoreCase(verifyCodePage)) {
             throw new CommonException("1004", LOGGER);
         }
         SysUser sourceUser = userService.queryUserByUsername(user);
