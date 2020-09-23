@@ -5,10 +5,13 @@ import javax.validation.constraints.NotEmpty;
 public class Message {
     @NotEmpty(message = "发送id不能为空")
     private Long sender;
+
     @NotEmpty(message = "接收id不能为空")
     private Long receiver;
+
     @NotEmpty(message = "消息类型不能为空")
     private int type;
+
     private String content;
 
     public Long getSender() {

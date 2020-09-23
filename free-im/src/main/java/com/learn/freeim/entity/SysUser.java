@@ -126,10 +126,4 @@ public class SysUser {
                 + ", password=" + password + ", mail=" + mail + ", city=" + city + ", age=" + age + ", nickname="
                 + nickname + ", createDate=" + createDate + ", updateDate=" + updateDate + "]";
     }
-
-    
-
-	
-    
-    
 }

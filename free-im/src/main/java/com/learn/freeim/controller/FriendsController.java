@@ -27,8 +27,10 @@ public class FriendsController {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private FriendsGroupManagerService friendsGroupManagerService;
+
     @Autowired
     private UserFriendsService userFriendsService;
 
